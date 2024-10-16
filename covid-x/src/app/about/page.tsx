@@ -1,6 +1,11 @@
 // src/app/about/page.tsx
 
 import React from "react";
+import Image from "next/image";
+import ValdoPP from "../../assets/ValdoPP.jpg";
+import NathanPP from "../../assets/NathanPP.jpeg";
+import NelloPP from "../../assets/NelloPP.jpg";
+import DarrenPP from "../../assets/DarrenPP.jpeg";
 
 export default function About() {
   return (
@@ -41,7 +46,7 @@ export default function About() {
         <div className="flex flex-wrap justify-center gap-10">
           {teamMembers.map((member) => (
             <div key={member.name} className="flex flex-col items-center">
-              <img
+              <Image
                 src={member.image}
                 alt={member.name}
                 className="w-32 h-32 rounded-full object-cover mb-4"
@@ -65,22 +70,23 @@ export default function About() {
 const teamMembers = [
   {
     name: "Vernandio Rivaldo",
-    role: "Website & AI Developer",
-    image: "https://picsum.photos/200/300",
+    role: "Website Developer",
+    image: ValdoPP,
   },
+
   {
     name: "Darren Oliver H.P",
     role: "Design Specialist",
-    image: "https://picsum.photos/200/300",
+    image: DarrenPP,
   },
   {
     name: "Nathaniel Alexander",
-    role: "Design Specialist",
-    image: "https://picsum.photos/200/300",
+    role: "AI Developer",
+    image: NathanPP,
   },
   {
     name: "Nello Aurelius",
     role: "Report Maker",
-    image: "https://picsum.photos/200/300",
+    image: NelloPP,
   },
 ];
