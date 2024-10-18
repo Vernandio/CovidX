@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* background: linear-gradient(
+    to bottom right,
+    #1f2937,
+    #374151
+  );  */
+  background: linear-gradient(to bottom right, #1e3a8a, #6b21a8, #1f2937);
+}
+
+.button-class {
+  background-color: #4c8bf5;
+  color: white;
+  margin: 0px 10px;
+}
+
+.prediction-container {
+  /* position: relative; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prediction-section {
+  width: 50vw;
+  height: 40vh;
+  background-color: rgba(255, 255, 255, 0.1); /* bg-white/10 */
+  backdrop-filter: blur(8px); /* backdrop-blur-md = 8px */
+  border-radius: 0.5rem; /* rounded-lg = 0.5rem (8px) */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 10vh 0;
+}
+
+.form-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
