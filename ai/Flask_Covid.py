@@ -21,7 +21,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # Load the pre-trained COVID detection model
 try:
     # Load the full model (both architecture and weights) from the saved .h5 file
-    model = load_model('./covid_model.h5')  # This loads both the architecture and the weights
+    model = load_model('./CBV.keras')  # This loads both the architecture and the weights
     print("COVID model loaded successfully.")
 except Exception as e:
     print(f"Error loading COVID model: {e}")
@@ -33,9 +33,9 @@ model_classification = joblib.load('svm_model.pkl')
 def preprocess_image(image_path):
     try:
         img = cv2.imread(image_path)  # Read the image
-        img = cv2.resize(img, (150, 150))  # Resize to match the input size expected by the model
+        img = cv2.resize(img, (400, 400))  # Resize to match the input size expected by the model
+        img = img / 255.0
         img = np.expand_dims(img, axis=0)  # Add batch dimension
-        img = img / 255.0  # Normalize pixel values
         print(f"Image preprocessed successfully, shape: {img.shape}")
         return img
     except Exception as e:
@@ -49,12 +49,14 @@ def predict_covid(image_path):
         prediction = model.predict(img)  # Get the model's prediction
         
         # Log the raw prediction to see the model's output
-        print(f"Raw prediction probability: {prediction}")
+        # print(f"Raw prediction probability: {prediction}")
         
         # Interpreting prediction: Assuming binary classification (COVID vs. No COVID)
-        predicted_label = 'COVID Detected' if prediction[0][0] < 0.5 else 'No COVID'
-        print(f"Predicted Label: {predicted_label}")
-        
+        # predicted_label = 'COVID Detected' if prediction[0][0] < 0.5 else 'No COVID'
+        # print(f"Predicted Label: {predicted_label}")
+        # classes = ['COVID19', 'NORMAL', 'PNEUMONIA', 'TBC']
+        classes = ['BACTERIAL-PNEUMONIA', 'COVID19', 'VIRAL-PNEUMONIA']
+        predicted_label=classes[np.argmax(prediction)]
         # Return the prediction
         return predicted_label
     except Exception as e:
