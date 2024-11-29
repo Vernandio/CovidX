@@ -21,7 +21,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # Load the pre-trained COVID detection model
 try:
     # Load the full model (both architecture and weights) from the saved .h5 file
-    model = load_model('./CBV.keras')  # This loads both the architecture and the weights
+    model = load_model('./resnet_model.h5')  # This loads both the architecture and the weights
     print("COVID model loaded successfully.")
 except Exception as e:
     print(f"Error loading COVID model: {e}")
@@ -54,8 +54,8 @@ def predict_covid(image_path):
         # Interpreting prediction: Assuming binary classification (COVID vs. No COVID)
         # predicted_label = 'COVID Detected' if prediction[0][0] < 0.5 else 'No COVID'
         # print(f"Predicted Label: {predicted_label}")
-        # classes = ['COVID19', 'NORMAL', 'PNEUMONIA', 'TBC']
-        classes = ['BACTERIAL-PNEUMONIA', 'COVID19', 'VIRAL-PNEUMONIA']
+        classes = ['COVID19', 'NORMAL', 'PNEUMONIA', 'TBC']
+        # classes = ['BACTERIAL-PNEUMONIA', 'COVID19', 'VIRAL-PNEUMONIA']
         predicted_label=classes[np.argmax(prediction)]
         # Return the prediction
         return predicted_label
